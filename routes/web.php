@@ -34,9 +34,9 @@ Route::get('countryPermissions',[CountriesController::class,'Permissions'])->mid
 Route::resource('states', StatesController::class)->middleware('auth');
 Route::get('statesPermissions',[StatesController::class,'Permissions'])->middleware('auth');
 // select //
-Route::get('selectCountries', [CountriesController::class,'FillSelectCountries']);
-Route::get('selectCities/{state_id}/{country_id}', [CitiesController::class,'FillSelectCities']);
-Route::get('selectStates/{country_id}', [StatesController::class,'FillSelectStates']);
+Route::get('selectCountries', [CountriesController::class,'FillSelectCountries'])->middleware('auth');
+Route::get('selectCities/{state_id}/{country_id}', [CitiesController::class,'FillSelectCities'])->middleware('auth');
+Route::get('selectStates/{country_id}', [StatesController::class,'FillSelectStates'])->middleware('auth');
 
 Route::get('/logout', function () {
     return redirect('login')->with(Auth::logout());;
